@@ -24,7 +24,7 @@ class PreOrderTraversal {
         while (stack.isNotEmpty()) {
             val node = stack.pop() //popping each value of stack
             myList.add(node.data)
-            //adding right one first as its a stack and we
+            //adding right one first and left on top of it as its a stack
             node.right?.let { stack.add(it) }
             node.left?.let { stack.add(it) }
         }
