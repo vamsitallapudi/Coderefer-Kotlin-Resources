@@ -16,13 +16,14 @@ class InOrderTraversal {
 //        traversing the tree whenever right node is not null or the stack contains items
         while (node !=null || stack.isNotEmpty()) {
 //            processing all the left nodes of the current node
-            while (node != null) {
-                stack.add(node)
+            if (node != null) {
+                stack.push(node)
                 node= node.left
+            } else {
+                node = stack.pop()
+                list.add(node.data) // adding to the list after all left children
+                node = node.right // processing the right subtree
             }
-            node = stack.pop()
-            list.add(node.data) // adding the current node's value to the list
-            node = node.right // processing the right subtree
         }
         return list
     }
