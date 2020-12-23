@@ -1,6 +1,6 @@
 package main.programming.binaryTrees.traversals
 
-import java.util.*
+import java.util.ArrayDeque
 
 class InOrderTraversal {
     fun inOrderTraversalRecursive(root: TreeNode?): List<Int> {
@@ -12,16 +12,16 @@ class InOrderTraversal {
         val list = mutableListOf<Int>()
         if (root == null) return list
         var node = root
-        val stack = Stack<TreeNode>()
+        val stack = ArrayDeque<TreeNode>()
 //        traversing the tree whenever right node is not null or the stack contains items
         while (node != null || stack.isNotEmpty()) {
 //            processing all the left nodes of the current node
             if (node != null) {
                 stack.push(node)
-                node = node.left
+                node = node.left //traversing to left node without processing root data
             } else {
                 node = stack.pop()
-                list.add(node.data) // adding to the list after all left children
+                list.add(node.data) // adding to the list if no left child
                 node = node.right // processing the right subtree
             }
         }
