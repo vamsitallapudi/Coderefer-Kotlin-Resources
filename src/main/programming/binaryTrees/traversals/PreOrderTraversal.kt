@@ -20,14 +20,15 @@ class PreOrderTraversal {
         if (root == null) return myList
         var node = root
         while (node != null || stack.isNotEmpty()) {
-            if (node != null) {
-                stack.push(node) // pushing before processing children
-                myList.add(node.data) //adding before going to left subtree
-                node = node.left
-            } else {
-                val p = stack.pop() // now popping stack to traverse right subtree
-                node = p.right
-            }
+            node =
+                    if (node != null) {
+                        stack.push(node) // pushing before processing children
+                        myList.add(node.data) //adding before going to left subtree
+                        node.left
+                    } else {
+                        val p = stack.pop() // now popping stack to traverse right subtree
+                        p.right
+                    }
         }
         return myList
     }
