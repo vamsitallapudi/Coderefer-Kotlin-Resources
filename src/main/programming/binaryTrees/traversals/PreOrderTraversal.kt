@@ -1,6 +1,6 @@
 package main.programming.binaryTrees.traversals
 
-import java.util.*
+import java.util.ArrayDeque
 
 class PreOrderTraversal {
     fun preorderTraversalRecursive(root: TreeNode?): List<Int> {
@@ -15,18 +15,19 @@ class PreOrderTraversal {
     fun preOrderTraversalIterative(root: TreeNode?): List<Int> {
         val myList = mutableListOf<Int>()
         // creating stack to store the left and right nodes while processing root node
-        val stack = Stack<TreeNode>()
+        val stack = ArrayDeque<TreeNode>()
 //        checking edge case and returning empty list
-        if (root == null) {
-            return myList
-        }
-        stack.add(root) // adding root to stack initially
-        while (stack.isNotEmpty()) {
-            val node = stack.pop() //popping each value of stack
-            myList.add(node.data)
-            //adding right one first and left on top of it as its a stack
-            node.right?.let { stack.add(it) }
-            node.left?.let { stack.add(it) }
+        if (root == null) return myList
+        var node = root
+        while (node != null || stack.isNotEmpty()) {
+            if (node != null) {
+                stack.push(node) // pushing before processing children
+                myList.add(node.data) //adding before going to left subtree
+                node = node.left
+            } else {
+                val p = stack.pop() // now popping stack to traverse right subtree
+                node = p.right
+            }
         }
         return myList
     }
