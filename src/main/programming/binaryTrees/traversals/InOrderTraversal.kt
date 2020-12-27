@@ -21,9 +21,9 @@ class InOrderTraversal {
                         stack.push(node)
                         node.left //traversing to left node without processing root data
                     } else {
-                        node = stack.pop()
-                        list.add(node.data) // adding to the list if no left child
-                        node.right // processing the right subtree
+                        val p = stack.pop()
+                        list.add(p.data) // adding to the list if no left child
+                        p.right // processing the right subtree
                     }
         }
         return list
