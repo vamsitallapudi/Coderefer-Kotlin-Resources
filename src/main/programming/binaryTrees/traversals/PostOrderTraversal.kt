@@ -12,6 +12,7 @@ class PostOrderTraversal {
     fun postOrderIterative(root: TreeNode?): List<Int> {
         if(root == null) return emptyList()
         val stack = ArrayDeque<TreeNode>()
+        // using linked list because adding at first is efficient O(1) compared to arraylist O(N)
         val list = LinkedList<Int>()
         stack.push(root) // pushing the root node first
         while (stack.isNotEmpty()) {
