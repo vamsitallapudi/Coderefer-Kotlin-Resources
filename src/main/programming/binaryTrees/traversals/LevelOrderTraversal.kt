@@ -14,12 +14,8 @@ class LevelOrderTraversal {
             for (i in 0 until count) {
                 val node = queue.poll()
                 subList.add(node.data)
-                if (node.left != null) {
-                    queue.addLast(node.left)
-                }
-                if (node.right != null) {
-                    queue.addLast(node.right)
-                }
+                node.left?.let { queue.addLast(it) }
+                node.right?.let{ queue.addLast(it)}
             }
             list.add(subList)
         }
